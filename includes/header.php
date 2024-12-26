@@ -43,7 +43,7 @@
                         <li><a class="dropdown-item" href="../public/add_appointment.php">Add Appointment</a></li>
                         <li><a class="dropdown-item" href="../public/update_appointment.php">Update Appointment</a></li>
                         <li><a class="dropdown-item" href="../public/delete_appointment.php">Delete Appointment</a></li>
-                        <li><a class="dropdown-item" href="../public/view_appointments.php">View Appointments</a></li>
+                        <li><a class="dropdown-item" href="../public/view_appointment.php">View Appointments</a></li>
                     </ul>
                 </li>
 
@@ -53,10 +53,10 @@
                         Medical Records
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="recordsDropdown">
-                        <li><a class="dropdown-item" href="../public/add_record.php">Add Record</a></li>
-                        <li><a class="dropdown-item" href="../public/update_record.php">Update Record</a></li>
-                        <li><a class="dropdown-item" href="../public/delete_record.php">Delete Record</a></li>
-                        <li><a class="dropdown-item" href="../public/view_records.php">View Records</a></li>
+                        <li><a class="dropdown-item" href="../public/add_medical_record.php">Add Record</a></li>
+                        <li><a class="dropdown-item" href="../public/update_medical_record.php">Update Record</a></li>
+                        <li><a class="dropdown-item" href="../public/delete_medical_record.php">Delete Record</a></li>
+                        <li><a class="dropdown-item" href="../public/view_medical_record.php">View Records</a></li>
                     </ul>
                 </li>
 
