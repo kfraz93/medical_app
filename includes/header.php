@@ -1,3 +1,6 @@
+<?php 
+include "authentication.php"; 
+?>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,6 +69,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../public/signup.php">Signup</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../includes/logout.php">Logout</a>
                 </li>
             </ul>
         </div>

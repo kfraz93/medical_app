@@ -1,9 +1,11 @@
-<?php include "../includes/header.php"; ?>
+<?php include "../includes/header.php"; 
+include '../includes/authentication.php'; 
+?>
 
 <div class="container register-form">
     <div class="form">
         <div class="note">
-            <p>Interact with the Users API</p>
+            <p>Interact with the Users API Add users</p>
         </div>
 
         <div class="form-content">

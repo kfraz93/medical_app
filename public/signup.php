@@ -8,7 +8,7 @@ include "../includes/header.php";
 <div class="container register-form">
     <div class="form">
         <div class="note">
-            <h2>This is a simple Register Form made using Bootstrap.</h2>
+            <p>Welcome to the Novativ Solutions portal</p>
         </div>
 
         <div class="form-content">

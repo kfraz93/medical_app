@@ -1,0 +1,23 @@
+# Firebase and sensitive files
+/vendor/
+/firebase.json
+/firebase/
+/firebase-debug.log
+/firebase-tools-debug.log
+/composer.json
+/composer.lock
+
+# Node modules and dependencies (if applicable)
+/node_modules/
+
+# Environment files
+.env
+.env.local
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor specific files
+.vscode/
+*.log
