@@ -1,5 +1,5 @@
 <?php 
-include "authentication.php"; 
+include "../api/authentication.php"; 
 ?>
 <head>
   <meta charset="UTF-8">
@@ -8,10 +8,11 @@ include "authentication.php";
   <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="../assets/style.css"></head>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
 <body>
   <!-- Bootstrap Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <!-- Main Brand -->
         <a class="navbar-brand" href="../public/index.php">NovativSolutions</a>
@@ -24,6 +25,12 @@ include "authentication.php";
         <!-- Navigation Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
+                <!-- Dynamic Login/Logout Buttons -->
+                <?php if (!isset($_COOKIE['token'])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../public/login.php">Login</a>
+                    </li>
+                <?php else: ?>
                 <!-- Users Dropdown -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,17 +69,13 @@ include "authentication.php";
                         <li><a class="dropdown-item" href="../public/view_medical_record.php">View Records</a></li>
                     </ul>
                 </li>
-
-                <!-- Login and Signup -->
                 <li class="nav-item">
-                    <a class="nav-link" href="../public/login.php">Login</a>
+                    <a class="nav-link" href="../api/logout.php">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../public/signup.php">Signup</a>
+                    <a class="nav-link" href="../public/signup.php">Create User</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../includes/logout.php">Logout</a>
-                </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>

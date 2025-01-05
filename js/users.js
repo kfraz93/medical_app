@@ -29,6 +29,7 @@ if (addUserForm) {
 }
 
 // Update User Form
+
 const updateUserForm = document.getElementById('update_user_form');
 if (updateUserForm) {
     updateUserForm.addEventListener('submit', function (event) {
@@ -36,7 +37,7 @@ if (updateUserForm) {
 
         const formData = new FormData(updateUserForm);
         const data = Object.fromEntries(formData);
-        console.log('Data being sent for update:', data); // Debugging log
+        console.log('Data being sent for password update:', data); // Debugging log
 
         fetch('../api/users.php', {
             method: 'PUT',
@@ -54,15 +55,16 @@ if (updateUserForm) {
         .then((data) => {
             console.log('Response from server:', data); // Debugging log
             if (data.success) {
-                alert('User updated successfully!');
+                alert('Password updated successfully!');
                 updateUserForm.reset();
             } else {
                 alert(`Error: ${data.error}`);
             }
         })
-        .catch((error) => console.error('Error during Update User:', error));
+        .catch((error) => console.error('Error during Password Update:', error));
     });
 }
+
 
 // Delete User Form
 const deleteUserForm = document.getElementById('delete_user_form');

@@ -23,8 +23,8 @@ if ($method === 'GET') {
     }
 } elseif ($method === 'PUT') {
     $input = json_decode(file_get_contents('php://input'), true);
-    if (!empty($input['user_id']) && !empty($input['username']) && !empty($input['email'])) {
-        updateUser($input);
+    if (!empty($input['user_id']) && !empty($input['current_password']) && !empty($input['new_password'])) {
+        updatePassword($input);
     } else {
         http_response_code(400);
         echo json_encode(["error" => "Missing required fields for update"]);
@@ -93,32 +93,60 @@ function createUser($input) {
     }
 }
 
-function updateUser($input) {
+function updatePassword($input) {
     global $pdo;
 
     // Debugging: Log received data
-    error_log('Update request received: ' . print_r($input, true));
+    error_log('Password update request received: ' . print_r($input, true));
 
     try {
-        $sql = "UPDATE users SET username = :username, email = :email WHERE user_id = :user_id";
+        // Validate required fields
+        if (!isset($input['user_id'], $input['current_password'], $input['new_password'])) {
+            throw new Exception("Missing required fields: user_id, current_password, or new_password.");
+        }
+
+        $userId = htmlspecialchars($input['user_id']);
+        $currentPassword = $input['current_password'];
+        $newPassword = $input['new_password'];
+
+        // Fetch user details
+        $sql = "SELECT password FROM users WHERE user_id = :user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['user_id' => $userId]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$user) {
+            throw new Exception("User not found.");
+        }
+
+        // Verify current password
+        if (!password_verify($currentPassword, $user['password'])) {
+            throw new Exception("Current password is incorrect.");
+        }
+
+        // Hash new password
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+        // Update the password
+        $sql = "UPDATE users SET password = :password WHERE user_id = :user_id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
-            'username' => htmlspecialchars($input['username']),
-            'email' => htmlspecialchars($input['email']),
-            'user_id' => htmlspecialchars($input['user_id']),
+            'password' => $hashedPassword,
+            'user_id' => $userId,
         ]);
 
         // Debugging: Log query success
-        error_log('Update query executed successfully');
+        error_log('Password update query executed successfully');
 
-        echo json_encode(["success" => "User updated successfully"]);
-    } catch (PDOException $e) {
+        echo json_encode(["success" => "Password updated successfully"]);
+    } catch (Exception $e) {
         // Debugging: Log the error
-        error_log('Error during update: ' . $e->getMessage());
-        http_response_code(500);
+        error_log('Error during password update: ' . $e->getMessage());
+        http_response_code(400);
         echo json_encode(["error" => $e->getMessage()]);
     }
 }
+
 
 function deleteUser($id) {
     global $pdo;

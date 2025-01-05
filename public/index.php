@@ -5,7 +5,7 @@ include "../includes/header.php";
 ?>
 
   <!-- Slider (Carousel) -->
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"  data-bs-interval="3000">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -16,10 +16,10 @@ include "../includes/header.php";
         <img src="../images/image_1.jpg" class="d-block w-100" alt="Slide 1">
       </div>
       <div class="carousel-item">
-        <img src="../images/image_2.jpg" class="d-block w-100" alt="Slide 2">
+        <img src="../images/slider3.jpg" class="d-block w-100" alt="Slide 2">
       </div>
       <div class="carousel-item">
-        <img src="../images/image_1.jpg" class="d-block w-100" alt="Slide 3">
+        <img src="../images/slider4.jpg" class="d-block w-100" alt="Slide 3">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -46,7 +46,7 @@ include "../includes/header.php";
       </div>
       <div class="col-md-6">
         <div class="card">
-          <img src="../images/div_pic_2.jpg" class="card-img-top" alt="Image 2">
+          <img src="../images/div_pic_3.jpg" class="card-img-top" alt="Image 2">
           <div class="card-body">
             <h5 class="card-title">I can put 2nd title here</h5>
             <p class="card-text">I can put 2nd description here </p>
@@ -55,6 +55,16 @@ include "../includes/header.php";
       </div>
     </div>
   </div>
+  <!-- Dummy text -->
+  <div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <p class="lead">
+        "We are a dedicated team of healthcare professionals committed to providing innovative and compassionate care. Our mission is to improve the health and well-being of our patients through cutting-edge technology and personalized treatment plans." 
+      </p>
+    </div>
+  </div>
+</div>
 
 <?php
 include "../includes/footer.php"

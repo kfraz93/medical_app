@@ -4,7 +4,13 @@ require '../vendor/autoload.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-$key = 'asdasgf232gzvsdgv23tgvbsbn234t13rfw'; // Replace with your actual secret key
+use Dotenv\Dotenv;
+
+// Load environment variables
+$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
+
+$key = $_ENV['JWT_SECRET'];
 
 // Skip authentication check for specific pages
 $current_page = basename($_SERVER['PHP_SELF']);

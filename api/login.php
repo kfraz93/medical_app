@@ -1,6 +1,11 @@
 <?php
 require_once '../vendor/autoload.php';
 
+// Load environment variables
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
+
 use Firebase\JWT\JWT;
 
 include '../includes/db.php';
@@ -48,7 +53,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($user) {
     if (password_verify($password, $user['password'])) {
         // Generate the JWT token for the user
-        $key = 'asdasgf232gzvsdgv23tgvbsbn234t13rfw';
+        $key = $_ENV['JWT_SECRET'];
         $token = JWT::encode([
             'iat' => time(),
             'nbf' => time(),
