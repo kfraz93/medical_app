@@ -30,8 +30,12 @@ if ($method === 'GET') {
         echo json_encode(["error" => "Missing required fields for update"]);
     }
 } elseif ($method === 'DELETE') {
-    if (!empty($_GET['user_id'])) { // Extract user_id from the query string
-        deleteUser($_GET['user_id']);
+    // Check for user_id in the request body
+    $data = json_decode(file_get_contents('php://input'), true);
+    $userId = $data['user_id'] ?? null;
+
+    if ($userId) {
+        deleteUser($userId);
     } else {
         http_response_code(400);
         echo json_encode(["error" => "User ID is required"]);
